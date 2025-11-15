@@ -11,6 +11,8 @@
     <template #right>
       <UIcon name='i-mdi-light-cart' class="size-6"></UIcon>
       <UIcon name='i-mdi-light-heart' class="size-6"></UIcon>
+      <UColorModeSwitch/>
+
     </template>
     <template #body>
       <UNavigationMenu :items="nav_items" orientation="vertical" variant="link"></UNavigationMenu>
@@ -32,10 +34,10 @@ const nav_items = ref<NavigationMenuItem[][]>([
       children: [
         {
           label: 'Shoes',
-          to: '/'
+          to: '/shoes'
         },
         {
-          label: 'Clothes'
+          label: 'Clothes',
         },
         {
           label: 'Furniture'
