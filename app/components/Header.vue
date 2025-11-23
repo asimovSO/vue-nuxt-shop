@@ -9,7 +9,7 @@
       :ui="{ list: 'gap-6', link: 'font-semibold text-base' }">
     </UNavigationMenu>
     <template #right>
-      <UIcon name='i-mdi-light-cart' class="size-6"></UIcon>
+      <Cart />
       <UIcon name='i-mdi-light-heart' class="size-6"></UIcon>
       <UColorModeSwitch/>
 

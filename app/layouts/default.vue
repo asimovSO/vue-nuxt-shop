@@ -2,7 +2,9 @@
   <div>
     <Header />
     <UContainer>
-      <slot />
+      <div class="py-6">
+        <slot />
+      </div>
     </UContainer>
   </div>
 </template>
