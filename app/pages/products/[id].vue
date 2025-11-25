@@ -1,19 +1,19 @@
 <template>
     <div class="grid grid-cols-1 md:grid-cols-10 gap-4 md:gap-10">
-        <div class="md:col-span-4 my-5">
+        <div class="md:col-span-4 mb-4">
             <UCarousel :items="product?.images" v-slot="{ item }" dots>
                 <img :src="item" alt="Image" class="rounded-2xl w-full" />
             </UCarousel>
         </div>
         <div class="md:col-span-6">
-            <span class="text-gray-600 font-medium">{{
+            <span class="text-gray-600 font-medium block">{{
                 product?.category.name
             }}</span>
-            <h1 class="block text-3xl font-semibold">{{ product?.title }}</h1>
-            <strong class="block text-4xl font-bold my-4 text-primary">{{
+            <h1 class="block text-3xl font-semibold mb-3">{{ product?.title }}</h1>
+            <strong class="block text-4xl font-bold mb-6 text-primary">{{
                 "$" + product?.price
             }}</strong>
-            <!-- <USeparator class="my-6" /> -->
+            <USeparator class="my-6" />
             <p class="text-slate-500 text-base">{{ product?.description }}</p>
             <div class="my-8 flex flex-col md:flex-row gap-4">
                 <UButton
