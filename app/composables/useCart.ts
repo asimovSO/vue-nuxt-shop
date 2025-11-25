@@ -1,8 +1,10 @@
 // composables/useCart.ts
+
 export const useCart = () => {
   const cart = ref<any[]>([])
   const isLoading = ref(false)
   const CART_KEY = 'shopping-cart'
+  const toast = useToast()
 
   // Имитация задержки (как будто запрос на сервер)
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
@@ -39,11 +41,14 @@ export const useCart = () => {
       
       if (existingItem) {
         existingItem.quantity += 1
+        toast.add({title: 'Product is already in cart. Quantity increased.', color: 'warning'})
+
       } else {
         cart.value.push({
           ...product,
           quantity: 1
         })
+        toast.add({title: 'Product is added to cart.', color: 'success'})
       }
       
       saveCart()
@@ -100,11 +105,11 @@ export const useCart = () => {
   }
 
   // Очистить корзину (с задержкой)
-  const clearCart = async () => {
+  const clearCart =  () => {
     isLoading.value = false
     
     try {
-      await delay(600) // 600ms задержка
+      // await delay(600)/ / 600ms задержка
       
       cart.value = []
       saveCart()
@@ -140,7 +145,7 @@ export const useCart = () => {
   })
 
   return {
-    cart: readonly(cart),
+    cart: cart,
     isLoading: readonly(isLoading),
     addToCart,
     removeFromCart,
