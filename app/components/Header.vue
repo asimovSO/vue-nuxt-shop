@@ -34,7 +34,7 @@ const nav_items = ref<NavigationMenuItem[][]>([
       children: [
         {
           label: 'Shoes',
-          to: '/shoes'
+          to: '/categories/shoes'
         },
         {
           label: 'Clothes',

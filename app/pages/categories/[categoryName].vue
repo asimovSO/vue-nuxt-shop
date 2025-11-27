@@ -1,7 +1,5 @@
 <template>
-    <div>
-        hieeee
-    </div>
+    <div>{{ $route.params.categoryName }}</div>
 </template>
 <script setup>
 definePageMeta({

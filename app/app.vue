@@ -1,5 +1,6 @@
 <template>
   <UApp :toaster="toaster">
+    <Header />
     <UMain>
       <NuxtLayout>
         <NuxtPage />
