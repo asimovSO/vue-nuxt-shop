@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="h-full">
         <NuxtLink :to="`/products/${id}`">
             <div class="rounded">
                 <img :src="imgSrc" alt="image" class="hover:scale-[1.1] transition-all rounded-2xl mb-3">
