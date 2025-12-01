@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/* *{
+    border: red solid 1px;
+} */
+@theme static{
+
+}
+
+ :root{
+    --ui-primary: #56376c;
+    --ui-bg: rgb(243, 243, 243);
+ }
+
+ .dark{
+    --ui-primary: #c9b2da;
+    --ui-bg: rgb(29, 25, 43);
+ }
