@@ -18,6 +18,7 @@ const config = useRuntimeConfig();
 
 const { data: allProducts, pending } = await useFetch("/products", {
     baseURL: config.public.apiBase,
+    lazy: true,
     query: {
         limit: 20,
         offset: 0,
