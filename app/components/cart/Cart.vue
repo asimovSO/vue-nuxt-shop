@@ -25,7 +25,7 @@
                     />
                     </div>
             <USeparator class="my-4"/>
-            <div class="flex items-baseline font-semibold mb-5">
+            <div class="flex items-baseline font-semibold mb-5" v-if="totalPrice > 0">
                 <span class="block shrink whitespace-nowrap mr-2">Total price</span>
                 <div class="h-px w-full border-b border-dotted border-slate-500"></div>
                 <span class="ml-2">{{ totalPrice + '$' }}</span>
