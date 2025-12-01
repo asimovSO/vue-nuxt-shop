@@ -1,4 +1,5 @@
 <template>
+  <NuxtLoadingIndicator />
   <div>
     <UContainer>
       <div class="py-6">

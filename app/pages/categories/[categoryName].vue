@@ -1,5 +1,7 @@
 <template>
+    <loading v-if="!productsByCategory && pending"/>
     <ProductCard
+        v-else
         v-for="product in productsByCategory"
         :key="product.id"
         :id="product.id"
@@ -23,11 +25,12 @@ const { data: category } = await useFetch(
     }
 );
 
-const { data: productsByCategory } = await useLazyFetch(
+const { data: productsByCategory, pending } = await useLazyFetch(
     () => (category.value ? `/categories/${category.value.id}/products` : null),
     {
         baseURL: config.public.apiBase,
         watch: [category],
     }
 );
+
 </script>

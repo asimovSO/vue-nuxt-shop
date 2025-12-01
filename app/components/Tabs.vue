@@ -3,7 +3,7 @@
        <div>
          <UTabs :items="MainTabs" variant="link" orientation="horizontal" color="primary" size="xl" v-model="activeTab" :ui="{
             root: 'w-full min-w-fit h-fit',
-            label: 'overflow-visible text-clip whitespace-normal'
+            label: 'overflow-visible text-nowrap whitespace-nowrap'
         }" />
        </div>
     </div>

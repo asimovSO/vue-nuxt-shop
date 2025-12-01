@@ -1,5 +1,6 @@
 <template>
-    <div class="grid grid-cols-1 md:grid-cols-10 gap-4 md:gap-10 mb-14" v-if="product">
+    <Loading v-if="!product && pending" />
+    <div class="grid grid-cols-1 md:grid-cols-10 gap-4 md:gap-10 mb-14" v-else>
         <div class="md:col-span-4 mb-4">
             <UCarousel :items="product?.images" v-slot="{ item }" dots>
                 <img :src="item" alt="Image" class="rounded-2xl w-full" />
@@ -26,12 +27,12 @@
         </div>
     </div>
     
-    <div v-else>
-        Nothing found 404.
+    <div v-if="error">
+        Error: {{ error }}
     </div>
 
     <!-- RELATED PRODUCTS -->
-    <div>
+    <div v-if="!pending">
         <h2 class="my-6 font-bold text-2xl">Related products</h2>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-4" v-if="relatedProducts">
         <ProductCard class=""
@@ -63,9 +64,11 @@ type Product = {
 };
 type Category = { id: number; name: string };
 
-const { data: product, error } = await useFetch<Product>(
+const { data: product, error, pending } = await useFetch<Product>(
     `/products/${route.params.id}`,
-    { baseURL: config.public.apiBase }
+    { baseURL: config.public.apiBase, 
+        lazy: true
+     }
 );
 
 const { data: relatedProducts, error: related_error } = await useFetch<Product[]>(`/products/${route.params.id}/related`, {
