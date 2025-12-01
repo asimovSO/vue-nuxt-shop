@@ -50,6 +50,7 @@
 <script setup lang="ts">
 import { useCart } from "~/composables/useCart";
 
+
 const config = useRuntimeConfig();
 const route = useRoute();
 const { isLoading, addToCart, clearCart } = useCart();
@@ -64,14 +65,27 @@ type Product = {
 };
 type Category = { id: number; name: string };
 
+
 const { data: product, error, pending } = await useFetch<Product>(
     `/products/${route.params.id}`,
     { baseURL: config.public.apiBase, 
         lazy: true
      }
-);
+)
 
 const { data: relatedProducts, error: related_error } = await useFetch<Product[]>(`/products/${route.params.id}/related`, {
     baseURL: config.public.apiBase
+})
+
+const headTitle = computed(() => product.value ? product.value.title: 'NuxtShop Product')
+const headDesc = computed(() => product.value ? product.value.description: 'NuxtShop Description')
+
+useHead({
+    title: headTitle,
+    meta: [
+        {
+            name: 'description', content: headDesc
+        }
+    ]
 })
 </script>
