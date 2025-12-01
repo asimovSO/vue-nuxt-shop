@@ -7,10 +7,9 @@
         }" />
        </div>
     </div>
+
 </template>
 <script setup>
-
-
 const route = useRoute()
 const router = useRouter()
 const config = useRuntimeConfig()
@@ -22,40 +21,31 @@ const MainTabs = ref([
     }
 ])
 
+const { data: categories } = await useFetch('/categories', {
+    baseURL: config.public.apiBase
+})
+
+if (categories.value) {
+    for (let i of categories.value) {
+        MainTabs.value.push({ label: i.name, value: `/${i.slug}` })
+    }
+}
+
 const activeTab = computed({
     get() {
-        // Если на главной странице
         if (route.path === '/') {
             return '/'
         }
-        // Если на странице категории
         if (route.params.categoryName) {
             return `/${route.params.categoryName}`
         }
         return '/'
     },
     set(tab) {
-        // Если выбрана вкладка "All"
         if (tab === '/') {
             return router.push('/')
         }
-        // Для остальных категорий
         return router.push(`/categories${tab}`)
     }
 })
-
-const fetchCategories = async () => {
-    let res = await useFetch('/categories', {
-        baseURL: config.public.apiBase
-    })
-
-    if (res.data.value) {
-        for (let i of res.data.value) {
-            MainTabs.value.push({ label: i.name, value: `/${i.slug}` })
-        }
-    }
-}
-
-fetchCategories()
-
 </script>

@@ -6,6 +6,8 @@ export const useShopApi = () => {
 
     const getProducts = async () => {
         const response = await useFetch(`${baseUrl}/products`)
+        console.log(response);
+        
         return response
     }
 
